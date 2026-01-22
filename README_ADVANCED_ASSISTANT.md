@@ -1,4 +1,52 @@
-# ✨ ADVANCED AI ROBOT ASSISTANT — COMPLETE IMPLEMENTATION
+# ✨ Advanced AI Robot Assistant
+
+## Description
+An intelligent robot assistant for students, featuring multi-layer intent detection, adaptive responses, and session-based context awareness. Designed to guide users through STEM programs, admissions, and writing resources.
+
+---
+
+## 🚀 Setup & Installation
+1. Clone this repository.
+2. Install Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Run the app:
+   ```bash
+   python app.py
+   ```
+
+---
+
+## 💡 Usage
+Open your browser and go to `http://localhost:5000` (or the configured port). Interact with the assistant via the web interface.
+
+---
+
+## ✨ Features
+- Multi-layer intent detection (category & type)
+- Adaptive, context-aware responses
+- Session memory for improved guidance
+- STEM program and admissions support
+- Writing help and resources
+
+---
+
+## 🤝 Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+## 📄 License
+This project is licensed under the MIT License.
+
+---
+
+## 📬 Contact
+For questions or support, open an issue or contact the maintainer via GitHub.
+
+---
+## What You Asked For
 
 ## What You Asked For
 

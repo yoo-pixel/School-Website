@@ -1,10 +1,8 @@
-# 🤖 Enhanced Assistant - ChatGPT-Level Conversational Intelligence
 
 ## What Was Enhanced
 
 Your STEM robot assistant now has **ChatGPT-level conversational intelligence**. Here's what changed:
 
----
 
 ## 🧠 1. SEMANTIC INTENT DETECTION
 
@@ -21,12 +19,7 @@ if (q.match(/\b(program|opportunity|summer|stem|ai|course|experience)\b/))
 Regex-based semantic understanding—catches variations, typos, and related terms.
 
 **Impact:**
-- Recognizes "courses" as programs
-- Handles plural forms correctly
-- Matches word boundaries (avoids false positives)
-- More flexible with natural language
 
----
 
 ## 🔗 2. CONTEXT-AWARE INFERENCE
 
@@ -35,9 +28,6 @@ Regex-based semantic understanding—catches variations, typos, and related term
 Resolves vague pronouns and ambiguous references using session history.
 
 **Examples:**
-- User: "What programs are available?"
-- Bot: [explains programs]
-- User: "**How do I get into one?**"
   - System infers "one" = programs (from context)
   - Routes correctly to programs/admissions category
 
@@ -47,7 +37,56 @@ Resolves vague pronouns and ambiguous references using session history.
 3. Infers category from context
 4. Falls back to keyword matching if no context
 
+# 🤖 Enhanced Assistant
+
+## Description
+An advanced STEM robot assistant with ChatGPT-level conversational intelligence, designed to help students explore programs, admissions, and writing resources with natural, context-aware dialogue.
+
 ---
+
+## 🚀 Setup & Installation
+1. Clone this repository.
+2. Install Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Run the app:
+   ```bash
+   python app.py
+   ```
+
+---
+
+## 💡 Usage
+Open your browser and go to `http://localhost:5000` (or the configured port). Interact with the assistant via the web interface.
+
+---
+
+## ✨ Features
+- ChatGPT-level semantic intent detection
+- Context-aware inference for natural conversations
+- STEM program exploration and admissions guidance
+- Writing resources and tips
+- Flexible, typo-tolerant input handling
+
+---
+
+## 🤝 Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+## 📄 License
+This project is licensed under the MIT License.
+
+---
+
+## 📬 Contact
+For questions or support, open an issue or contact the maintainer via GitHub.
+
+---
+## What Was Enhanced
+...existing code...
 
 ## 📊 3. METADATA TRACKING
 
