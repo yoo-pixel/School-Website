@@ -2520,5 +2520,9 @@ def test_save():
     return render_template("test_save.html", SCHOOL_NAME=SCHOOL_NAME, programs=GLOBAL_PROGRAMS)
 
 
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
+
