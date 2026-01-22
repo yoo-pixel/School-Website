@@ -1,0 +1,201 @@
+{% extends 'base.html' %} {% block title %}Reply to Message — {{ SCHOOL_NAME }}{% endblock %} {% block content %}
+<style>
+    .reply-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    
+    .reply-header {
+        margin-bottom: 30px;
+    }
+    
+    .reply-header h1 {
+        margin: 0 0 10px 0;
+        color: #1a1a1a;
+    }
+    
+    .reply-back {
+        color: #667eea;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    .reply-back:hover {
+        text-decoration: underline;
+    }
+    
+    .message-preview {
+        background: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .preview-label {
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 4px;
+        font-size: 13px;
+        text-transform: uppercase;
+        color: #999;
+    }
+    
+    .preview-content {
+        margin-bottom: 16px;
+    }
+    
+    .preview-content:last-child {
+        margin-bottom: 0;
+    }
+    
+    .preview-from {
+        font-weight: 600;
+        color: #1a1a1a;
+        font-size: 16px;
+    }
+    
+    .preview-email {
+        color: #667eea;
+        font-size: 14px;
+    }
+    
+    .preview-text {
+        color: #555;
+        line-height: 1.6;
+        margin-top: 12px;
+    }
+    
+    .reply-form {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 24px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group:last-child {
+        margin-bottom: 0;
+    }
+    
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    
+    .form-textarea {
+        width: 100%;
+        min-height: 200px;
+        padding: 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 14px;
+        resize: vertical;
+    }
+    
+    .form-textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .form-note {
+        background: #fffacd;
+        border-left: 3px solid #ffc107;
+        padding: 12px;
+        border-radius: 4px;
+        color: #856404;
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+    
+    .btn-secondary {
+        background: white;
+        color: #667eea;
+        border: 1px solid #667eea;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+        background: #f0f4ff;
+    }
+</style>
+
+<div class="reply-container">
+    <div class="reply-header">
+        <h1>Reply to Message</h1>
+        <a href="{{ url_for('admin_panel') }}" class="reply-back">← Back to Admin Panel</a>
+    </div>
+
+    <!-- Original Message Preview -->
+    <div class="message-preview">
+        <div class="preview-label">Message From</div>
+        <div class="preview-content">
+            <div class="preview-from">{{ message.name }}</div>
+            <div class="preview-email">{{ message.email }}</div>
+        </div>
+
+        <div class="preview-label" style="margin-top: 16px;">Message</div>
+        <div class="preview-content">
+            <div class="preview-text">{{ message.message }}</div>
+        </div>
+
+        <div class="preview-label" style="margin-top: 16px;">Sent</div>
+        <div class="preview-content">
+            <div style="color: #999; font-size: 13px;">{{ message.timestamp }}</div>
+        </div>
+    </div>
+
+    <!-- Reply Form -->
+    <form method="POST" class="reply-form">
+        <div class="form-note">
+            ℹ️ In production, this reply would be sent as an email to {{ message.email }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Your Reply</label>
+            <textarea name="reply_text" class="form-textarea" placeholder="Type your response here..." required></textarea>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('admin_panel') }}" class="btn-secondary">Cancel</a>
+            <button type="submit" class="btn-primary">Send Reply</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

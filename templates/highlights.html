@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<section class="section section--soft">
+    <div class="container">
+        <p class="eyebrow">Highlights</p>
+        <h1 class="mb-3">Student wins at {{ school_name }}</h1>
+        <p class="muted">Teams compete locally and globally. Here are a few snapshots.</p>
+
+        <div class="row g-3 mt-3">
+            {% for item in highlights %}
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text">{{ item.detail }}</p>
+                        <div class="d-flex gap-2 mt-2">
+                            <span class="badge bg-primary">Teamwork</span>
+                            <span class="badge bg-success">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4">
+            <div class="progress" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-warning text-dark" style="width: 80%">80% students join a club</div>
+            </div>
+            <small class="text-muted">Clubs include robotics, data science, green tech, media lab, and entrepreneurship.</small>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends "base.html" %} {% block title %}Sign Up — {{ SCHOOL_NAME }}{% endblock %} {% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1 class="auth-title">Create Your Account</h1>
+            <p class="auth-subtitle">Join to save programs, track resources, and personalize your experience</p>
+        </div>
+
+        <!-- Clear Notice -->
+        <div class="auth-notice">
+            <svg class="auth-notice-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM11 15H9V13H11V15ZM11 11H9V5H11V11Z" fill="currentColor"/>
+            </svg>
+            <p><strong>Important:</strong> Creating an account does not affect admissions or eligibility. Accounts are for website features only.</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+        <div class="auth-alert auth-alert--{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+
+        <form method="POST" action="{{ url_for('signup') }}" class="auth-form needs-validation" novalidate>
+            <!-- Full Name -->
+            <div class="auth-form-group">
+                <label for="fullname" class="auth-label">Full Name</label>
+                <input type="text" id="fullname" name="fullname" class="auth-input" required minlength="3" placeholder="Enter your full name" value="{{ request.form.get('fullname', '') }}">
+                <div class="auth-error">Please enter your full name (at least 3 characters)</div>
+            </div>
+
+            <!-- Email Address -->
+            <div class="auth-form-group">
+                <label for="email" class="auth-label">Email Address</label>
+                <input type="email" id="email" name="email" class="auth-input" required placeholder="your.email@example.com" value="{{ request.form.get('email', '') }}">
+                <div class="auth-error">Please enter a valid email address</div>
+            </div>
+
+            <!-- Role Selection (Optional) -->
+            <div class="auth-form-group">
+                <label for="role" class="auth-label">I am a... <span class="auth-label-optional">(optional)</span></label>
+                <select id="role" name="role" class="auth-input auth-select">
+                    <option value="">Prefer not to say</option>
+                    <option value="student" {% if request.form.get('role') == 'student' %}selected{% endif %}>Student</option>
+                    <option value="parent" {% if request.form.get('role') == 'parent' %}selected{% endif %}>Parent</option>
+                    <option value="educator" {% if request.form.get('role') == 'educator' %}selected{% endif %}>Educator</option>
+                    <option value="visitor" {% if request.form.get('role') == 'visitor' %}selected{% endif %}>Visitor</option>
+                </select>
+            </div>
+
+            <!-- Password -->
+            <div class="auth-form-group">
+                <label for="password" class="auth-label">Password</label>
+                <input type="password" id="password" name="password" class="auth-input" required minlength="8" placeholder="At least 8 characters">
+                <div class="auth-error">Password must be at least 8 characters</div>
+                <div class="auth-hint">Use a mix of letters, numbers, and symbols for security</div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="auth-form-group">
+                <label for="confirm_password" class="auth-label">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="auth-input" required minlength="8" placeholder="Re-enter your password">
+                <div class="auth-error">Passwords must match</div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="auth-button auth-button--primary">
+                <span>Create Account</span>
+                <svg class="auth-button-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 0L8.59 1.41L15.17 8H0V10H15.17L8.59 16.59L10 18L20 10L10 0Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="auth-footer">
+            <p>Already have an account? <a href="{{ url_for('login') }}" class="auth-link">Log in</a></p>
+        </div>
+    </div>
+
+    <!-- Privacy Notice -->
+    <div class="auth-privacy">
+        <p><strong>Privacy Notice:</strong> We only collect necessary information to provide website features. Your data is never shared with third parties. Admissions are managed exclusively by the Egyptian Ministry of Education.</p>
+    </div>
+</div>
+
+<script>
+    // Client-side password matching validation
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('.auth-form');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirm_password');
+
+        form.addEventListener('submit', function(e) {
+            if (password.value !== confirmPassword.value) {
+                e.preventDefault();
+                e.stopPropagation();
+                confirmPassword.setCustomValidity('Passwords must match');
+                confirmPassword.reportValidity();
+            } else {
+                confirmPassword.setCustomValidity('');
+            }
+
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            form.classList.add('was-validated');
+        });
+
+        confirmPassword.addEventListener('input', function() {
+            if (password.value === confirmPassword.value) {
+                confirmPassword.setCustomValidity('');
+            } else {
+                confirmPassword.setCustomValidity('Passwords must match');
+            }
+        });
+    });
+</script>
+{% endblock %}

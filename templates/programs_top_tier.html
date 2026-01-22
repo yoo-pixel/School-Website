@@ -1,0 +1,468 @@
+ {% extends "base.html" %} {% block title %}Top-Tier Programs | {{ school_name }}{% endblock %} {% block content %}
+<div class="breadcrumbs">
+    <a href="/" class="back-button" data-i18n="backToHome">← Back to Home</a>
+    <span class="breadcrumb-divider">|</span>
+    <a href="/" data-i18n="home">Home</a> → <a href="/programs" data-i18n="programs">Programs</a> → <span data-i18n="topTierPageTitle">Top-Tier</span>
+</div>
+
+<div class="tier-hero tier-hero--elite">
+    <div class="tier-hero__content">
+        <div class="tier-badge" data-i18n="topTierBadge">🏆 ELITE</div>
+        <h1 class="h1--space" data-i18n="topTierPageTitle">Top-Tier Programs</h1>
+        <p class="p--space" data-i18n="topTierPageDesc">Highly selective programs from the world's most prestigious institutions. These opportunities are designed for exceptional students with outstanding academic records, significant STEM achievements, and proven research or competition success.</p>
+    </div>
+</div>
+
+<div class="tier-container">
+    <aside class="tier-sidebar">
+        <h3 class="filter-title" data-i18n="filterProgramsTitle">Filter Programs</h3>
+
+        <div class="filter-group">
+            <h4 data-i18n="programTypeFilter">Program Type</h4>
+            <label class="filter-checkbox">
+                <input type="checkbox" name="type" value="Research">
+                <span class="checkbox-custom"></span>
+                <span data-i18n="research">Research</span>
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" name="type" value="Summer School">
+                <span class="checkbox-custom"></span>
+                <span data-i18n="summerSchool">Summer School</span>
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" name="type" value="Competition">
+                <span class="checkbox-custom"></span>
+                <span data-i18n="competition">Competition</span>
+            </label>
+        </div>
+
+        <div class="filter-group">
+            <h4 data-i18n="costFilter">Cost</h4>
+            <label class="filter-checkbox">
+                <input type="checkbox" name="cost" value="Free">
+                <span class="checkbox-custom"></span>
+                <span data-i18n="free">Free</span>
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" name="cost" value="Paid">
+                <span class="checkbox-custom"></span>
+                <span data-i18n="paidAidAvailable">Paid (Aid Available)</span>
+            </label>
+        </div>
+
+        <div class="filter-group">
+            <h4>Location</h4>
+            <label class="filter-checkbox">
+                <input type="checkbox" name="location" value="On-campus">
+                <span class="checkbox-custom"></span>
+                <span>On-Campus</span>
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" name="location" value="International">
+                <span class="checkbox-custom"></span>
+                <span>International</span>
+            </label>
+        </div>
+
+        <button id="clearFilters" class="button button--space-ghost" style="width: 100%; margin-top: 20px;" data-i18n="resetFilters">Clear Filters</button>
+    </aside>
+
+    <main class="tier-main">
+        <div class="results-count" id="resultsCount"></div>
+        <div id="programsGrid" class="tier-grid"></div>
+        <div id="noResults" class="no-results" style="display: none;">
+            <p>No programs match your filters.</p>
+        </div>
+    </main>
+</div>
+
+<style>
+    .breadcrumbs {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px 28px;
+        color: #CBD5E1;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    
+    .breadcrumbs a {
+        color: var(--cyan-electric);
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .breadcrumbs a:hover {
+        text-decoration: underline;
+    }
+    
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        background: rgba(0, 229, 255, 0.15);
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        border-radius: 8px;
+        color: #00E5FF !important;
+        font-weight: 600;
+        text-decoration: none !important;
+        transition: all 0.3s ease;
+    }
+    
+    .back-button:hover {
+        background: rgba(0, 229, 255, 0.25);
+        border-color: rgba(0, 229, 255, 0.5);
+        transform: translateX(-3px);
+        box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+    }
+    
+    .breadcrumb-divider {
+        color: rgba(255, 255, 255, 0.3);
+        margin: 0 4px;
+    }
+    
+    .tier-hero {
+        padding: 60px 28px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .tier-hero--elite {
+        background: linear-gradient(135deg, #1a0f00 0%, #3d2500 50%, #1a0f00 100%);
+    }
+    
+    .tier-hero::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.08) 0%, transparent 60%);
+        pointer-events: none;
+    }
+    
+    .tier-hero__content {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .tier-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        background: rgba(255, 215, 0, 0.15);
+        border: 1px solid rgba(255, 215, 0, 0.4);
+        border-radius: 20px;
+        color: #FFD700;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        margin-bottom: 20px;
+    }
+    
+    .tier-container {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 40px;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 60px 28px;
+    }
+    
+    .tier-sidebar {
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        border-radius: 16px;
+        padding: 24px;
+    }
+    
+    .filter-title {
+        color: #FFFFFF;
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0 0 24px 0;
+    }
+    
+    .filter-group {
+        margin-bottom: 24px;
+    }
+    
+    .filter-group h4 {
+        color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0 0 12px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    
+    .filter-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+        cursor: pointer;
+        color: #CBD5E1;
+        font-size: 14px;
+    }
+    
+    .filter-checkbox:hover {
+        color: #FFFFFF;
+    }
+    
+    .filter-checkbox input {
+        display: none;
+    }
+    
+    .checkbox-custom {
+        width: 18px;
+        height: 18px;
+        border: 1px solid rgba(255, 215, 0, 0.4);
+        border-radius: 4px;
+        background: rgba(255, 215, 0, 0.05);
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+    }
+    
+    .filter-checkbox input:checked+.checkbox-custom {
+        background: rgba(255, 215, 0, 0.3);
+        border-color: rgba(255, 215, 0, 0.8);
+        box-shadow: inset 0 0 0 2px #FFD700;
+    }
+    
+    .tier-main {
+        flex: 1;
+    }
+    
+    .results-count {
+        color: #CBD5E1;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    
+    .tier-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 24px;
+    }
+    
+    .program-card {
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(255, 215, 0, 0.25);
+        border-radius: 16px;
+        padding: 28px;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .program-card:hover {
+        background: rgba(15, 23, 42, 0.95);
+        border-color: rgba(255, 215, 0, 0.5);
+        box-shadow: 0 12px 48px rgba(255, 215, 0, 0.15);
+        transform: translateY(-4px);
+    }
+    
+    .program-name {
+        color: #FFFFFF;
+        font-size: 18px;
+        font-weight: 800;
+        margin: 0 0 8px 0;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .program-org {
+        color: #CBD5E1;
+        font-size: 13px;
+        margin: 0 0 16px 0;
+    }
+    
+    .program-desc {
+        color: #E5E7EB;
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 0 0 16px 0;
+        flex-grow: 1;
+    }
+    
+    .program-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 16px 0;
+    }
+    
+    .badge {
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    
+    .badge--type {
+        background: rgba(124, 124, 255, 0.15);
+        color: #7C7CFF;
+        border: 1px solid rgba(124, 124, 255, 0.3);
+    }
+    
+    .program-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px 0;
+        border-top: 1px solid rgba(255, 215, 0, 0.1);
+        font-size: 13px;
+        color: #CBD5E1;
+    }
+    
+    .program-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 16px;
+    }
+    
+    .btn-detail {
+        flex: 1;
+        padding: 12px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        color: #000000;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 13px;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-detail:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+    }
+    
+    .btn-website {
+        flex: 1;
+        padding: 12px;
+        border-radius: 8px;
+        background: rgba(0, 229, 255, 0.15);
+        color: #00E5FF;
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        text-align: center;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 13px;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-website:hover {
+        transform: translateY(-2px);
+        background: rgba(0, 229, 255, 0.25);
+        border-color: rgba(0, 229, 255, 0.5);
+        box-shadow: 0 4px 12px rgba(0, 229, 255, 0.3);
+    }
+    
+    .no-results {
+        text-align: center;
+        padding: 60px 28px;
+        color: #CBD5E1;
+        font-size: 18px;
+    }
+    
+    @media (max-width: 1024px) {
+        .tier-container {
+            grid-template-columns: 1fr;
+        }
+        .tier-sidebar {
+            position: static;
+        }
+    }
+</style>
+
+<script>
+    const allPrograms = {{ programs | tojson }};
+
+    function renderPrograms(programs) {
+        const grid = document.getElementById('programsGrid');
+        const noResults = document.getElementById('noResults');
+        const resultsCount = document.getElementById('resultsCount');
+
+        if (programs.length === 0) {
+            grid.innerHTML = '';
+            noResults.style.display = 'block';
+            resultsCount.textContent = '';
+            return;
+        }
+
+        noResults.style.display = 'none';
+        resultsCount.textContent = `${programs.length} programs found`;
+
+        grid.innerHTML = programs.map(p => `
+        <div class="program-card">
+            <h3 class="program-name">${p.name}</h3>
+            <p class="program-org">${p.organization}</p>
+            <p class="program-desc">${p.description}</p>
+            
+            <div class="program-badges">
+                <span class="badge badge--type">${p.type}</span>
+            </div>
+            
+            <div class="program-info">
+                <div>⏱ <strong>${p.duration}</strong></div>
+                <div>💰 <strong>${p.cost}</strong></div>
+                <div>📍 <strong>${p.location}</strong></div>
+                <div>📅 Application: ${p.application_window}</div>
+            </div>
+            
+            <div class="program-actions">
+                <a href="/programs/${p.id}" class="btn-detail">View Details</a>
+                <a href="${p.website}" target="_blank" class="btn-website">Visit Website ↗</a>
+            </div>
+        </div>
+    `).join('');
+    }
+
+    function applyFilters() {
+        const filters = {
+            type: [],
+            cost: [],
+            location: []
+        };
+
+        document.querySelectorAll('.filter-checkbox input:checked').forEach(input => {
+            filters[input.name].push(input.value);
+        });
+
+        let filtered = allPrograms.filter(p => {
+            if (filters.type.length && !filters.type.includes(p.type)) return false;
+            if (filters.cost.length && !filters.cost.includes(p.cost)) return false;
+            if (filters.location.length && !filters.location.includes(p.location)) return false;
+            return true;
+        });
+
+        renderPrograms(filtered);
+    }
+
+    document.querySelectorAll('.filter-checkbox input').forEach(input => {
+        input.addEventListener('change', applyFilters);
+    });
+
+    document.getElementById('clearFilters').addEventListener('click', () => {
+        document.querySelectorAll('.filter-checkbox input:checked').forEach(input => {
+            input.checked = false;
+        });
+        renderPrograms(allPrograms);
+    });
+
+    renderPrograms(allPrograms);
+</script>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% block title %}Log In — {{ SCHOOL_NAME }}{% endblock %} {% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1 class="auth-title">Welcome Back</h1>
+            <p class="auth-subtitle">Log in to access your saved programs and personalized features</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+        <div class="auth-alert auth-alert--{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+
+        <form method="POST" action="{{ url_for('login') }}" class="auth-form needs-validation" novalidate>
+            <!-- Email Address -->
+            <div class="auth-form-group">
+                <label for="email" class="auth-label">Email Address</label>
+                <input type="email" id="email" name="email" class="auth-input" required placeholder="your.email@example.com" value="{{ request.form.get('email', '') }}" autofocus>
+                <div class="auth-error">Please enter a valid email address</div>
+            </div>
+
+            <!-- Password -->
+            <div class="auth-form-group">
+                <label for="password" class="auth-label">Password</label>
+                <input type="password" id="password" name="password" class="auth-input" required placeholder="Enter your password">
+                <div class="auth-error">Please enter your password</div>
+            </div>
+
+            <!-- Remember Me & Forgot Password -->
+            <div class="auth-options">
+                <label class="auth-checkbox">
+                    <input type="checkbox" name="remember" value="true">
+                    <span>Remember me</span>
+                </label>
+                <a href="{{ url_for('forgot_password') }}" class="auth-link auth-link--small">Forgot password?</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="auth-button auth-button--primary">
+                <span>Log In</span>
+                <svg class="auth-button-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 0L8.59 1.41L15.17 8H0V10H15.17L8.59 16.59L10 18L20 10L10 0Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </form>
+
+        <!-- Sign Up Link -->
+        <div class="auth-footer">
+            <p>Don't have an account? <a href="{{ url_for('signup') }}" class="auth-link">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Help Notice -->
+    <div class="auth-help">
+        <h3>Need help?</h3>
+        <p>If you're having trouble logging in, visit our <a href="{{ url_for('contact') }}">contact page</a> for support.</p>
+        <p class="auth-help-note"><strong>Note:</strong> This login is for website features only. It does not grant access to official admissions systems.</p>
+    </div>
+</div>
+
+<script>
+    // Form validation
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('.auth-form');
+
+        form.addEventListener('submit', function(e) {
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            form.classList.add('was-validated');
+        });
+    });
+</script>
+{% endblock %}

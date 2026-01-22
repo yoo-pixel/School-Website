@@ -1,0 +1,344 @@
+{% extends 'base.html' %} {% block title %}Admin Panel — {{ SCHOOL_NAME }}{% endblock %} {% block content %}
+<style>
+    .admin-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e0e0e0;
+    }
+    
+    .admin-header h1 {
+        margin: 0;
+        color: #1a1a1a;
+    }
+    
+    .admin-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    .admin-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .stat-card {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 24px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+        border-color: #667eea;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+    }
+    
+    .stat-number {
+        font-size: 32px;
+        font-weight: bold;
+        color: #667eea;
+        margin: 10px 0;
+    }
+    
+    .stat-label {
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .admin-section {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        overflow: hidden;
+    }
+    
+    .section-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .section-header h2 {
+        margin: 0;
+        font-size: 20px;
+    }
+    
+    .section-actions {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .btn-admin {
+        background: white;
+        color: #667eea;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-admin:hover {
+        background: #f0f0f0;
+        transform: translateY(-1px);
+    }
+    
+    .section-content {
+        padding: 20px;
+    }
+    
+    .messages-list {
+        max-height: 600px;
+        overflow-y: auto;
+    }
+    
+    .message-item {
+        background: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        padding: 16px;
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    
+    .message-info {
+        flex: 1;
+    }
+    
+    .message-from {
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 4px;
+    }
+    
+    .message-email {
+        color: #667eea;
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+    
+    .message-text {
+        color: #555;
+        font-size: 14px;
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+    
+    .message-time {
+        color: #999;
+        font-size: 12px;
+    }
+    
+    .message-actions {
+        display: flex;
+        gap: 8px;
+        margin-left: 12px;
+    }
+    
+    .btn-reply {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-reply:hover {
+        background: #764ba2;
+    }
+    
+    .btn-delete {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-delete:hover {
+        background: #ee5a52;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: #999;
+    }
+    
+    .empty-icon {
+        font-size: 48px;
+        margin-bottom: 12px;
+    }
+    
+    .nav-tabs {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 24px;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 12px;
+    }
+    
+    .nav-tab {
+        background: none;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        color: #666;
+        font-weight: 600;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -12px;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-tab.active {
+        color: #667eea;
+        border-bottom-color: #667eea;
+    }
+    
+    .nav-tab:hover {
+        color: #667eea;
+    }
+</style>
+
+<div class="admin-container">
+    <!-- Header -->
+    <div class="admin-header">
+        <div>
+            <h1>Admin Panel</h1>
+        </div>
+        <span class="admin-badge">🔐 Administrator</span>
+    </div>
+
+    <!-- Alert Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+    <div class="contact-alert contact-alert--{{ category }}" style="margin-bottom: 20px;">
+        {{ message }}
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <!-- Statistics -->
+    <div class="admin-stats">
+        <div class="stat-card">
+            <div class="stat-label">Contact Messages</div>
+            <div class="stat-number">{{ total_messages }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Registered Users</div>
+            <div class="stat-number">{{ total_users }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">STEM Programs</div>
+            <div class="stat-number">{{ total_programs }}</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-section">
+        <div class="section-header">
+            <h2>📧 Contact Messages</h2>
+            <div class="section-actions">
+                <a href="{{ url_for('admin_users') }}" class="btn-admin">👥 View Users</a>
+                <a href="{{ url_for('admin_add_program') }}" class="btn-admin">➕ Add Program</a>
+            </div>
+        </div>
+
+        <div class="section-content">
+            {% if messages %}
+            <div class="messages-list">
+                {% for msg in messages %}
+                <div class="message-item">
+                    <div class="message-info">
+                        <div class="message-from">{{ msg.name }}</div>
+                        <div class="message-email">📧 {{ msg.email }}</div>
+                        <div class="message-text">{{ msg.message }}</div>
+                        <div class="message-time">{{ msg.timestamp }}</div>
+                    </div>
+                    <div class="message-actions">
+                        <a href="{{ url_for('reply_to_message', msg_index=loop.index0) }}" class="btn-reply">Reply</a>
+                        <form action="{{ url_for('delete_message', msg_index=loop.index0) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete this message?');">
+                            <button type="submit" class="btn-delete">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">📭</div>
+                <p>No messages yet. All messages submitted through the contact form will appear here.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="admin-section">
+        <div class="section-header">
+            <h2>⚙️ Admin Actions</h2>
+        </div>
+        <div class="section-content">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                <a href="{{ url_for('admin_users') }}" style="display: block; padding: 12px; background: #f0f4ff; border: 1px solid #667eea; border-radius: 6px; text-decoration: none; color: #667eea; font-weight: 600; text-align: center; transition: all 0.3s;">
+                    👥 View All Users
+                </a>
+                <a href="{{ url_for('admin_add_program') }}" style="display: block; padding: 12px; background: #f0f4ff; border: 1px solid #667eea; border-radius: 6px; text-decoration: none; color: #667eea; font-weight: 600; text-align: center; transition: all 0.3s;">
+                    ➕ Add New Program
+                </a>
+                <a href="{{ url_for('programs') }}" style="display: block; padding: 12px; background: #f0f4ff; border: 1px solid #667eea; border-radius: 6px; text-decoration: none; color: #667eea; font-weight: 600; text-align: center; transition: all 0.3s;">
+                    📚 View Programs
+                </a>
+                <a href="{{ url_for('dashboard') }}" style="display: block; padding: 12px; background: #f0f4ff; border: 1px solid #667eea; border-radius: 6px; text-decoration: none; color: #667eea; font-weight: 600; text-align: center; transition: all 0.3s;">
+                    🏠 Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Hover effects
+    document.querySelectorAll('a[style*="display: block"]').forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.background = '#667eea';
+            this.style.color = 'white';
+        });
+        link.addEventListener('mouseleave', function() {
+            this.style.background = '#f0f4ff';
+            this.style.color = '#667eea';
+        });
+    });
+</script>
+
+{% endblock %}

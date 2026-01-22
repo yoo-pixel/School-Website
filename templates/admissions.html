@@ -1,0 +1,716 @@
+{% extends 'base.html' %} {% block title %}Admissions Information | {{ school_name }}{% endblock %} {% block content %}
+<section class="admissions-hero">
+    <div class="admissions-hero__content">
+        <div class="admissions-badge">
+            <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+            </svg>
+            <span data-i18n="admissionsBadge">GOVERNMENT-BASED ADMISSIONS</span>
+        </div>
+        <h1 class="admissions-title" data-i18n="admissionsPageTitle">Admissions Process</h1>
+        <p class="admissions-subtitle" data-i18n="admissionsSubtitle">Placement to {{ school_name }} is managed by the Egyptian Ministry of Education through the official national examination and assignment system.</p>
+    </div>
+</section>
+
+<div class="admissions-container">
+    <div class="admissions-console">
+        <!-- Module 1: Authority -->
+        <div class="console-module" data-module="authority">
+            <div class="module-header">
+                <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <path d="M3 9h18"/>
+                    <path d="M9 21V9"/>
+                </svg>
+                <h2 class="module-title" data-i18n="authorityTitle">Authority</h2>
+            </div>
+            <div class="module-content">
+                <p class="module-text"><strong data-i18n="authorityText1">Admissions are controlled by the Ministry of Education.</strong></p>
+                <p class="module-text" data-i18n="authorityText2">{{ school_name }} does not select students independently. All placements are assigned by the government through the official admissions unit.</p>
+            </div>
+        </div>
+
+        <div class="console-divider"></div>
+
+        <!-- Module 2: Eligibility -->
+        <div class="console-module" data-module="eligibility">
+            <div class="module-header">
+                <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+                <h2 class="module-title" data-i18n="eligibilityTitle">Eligibility Requirements</h2>
+            </div>
+            <div class="module-content">
+                <div class="requirement-list">
+                    <div class="requirement-item">
+                        <div class="requirement-marker">1</div>
+                        <div class="requirement-details">
+                            <h3 class="requirement-heading" data-i18n="requirement1Title">Complete Grade 9</h3>
+                            <p class="requirement-desc" data-i18n="requirement1Desc">Students must successfully complete Grade 9 (Preparatory 3) in an Egyptian public or private school.</p>
+                        </div>
+                    </div>
+                    <div class="requirement-item">
+                        <div class="requirement-marker">2</div>
+                        <div class="requirement-details">
+                            <h3 class="requirement-heading" data-i18n="requirement2Title">National Examination</h3>
+                            <p class="requirement-desc" data-i18n="requirement2Desc">Qualify through the official STEM secondary school entrance examination administered by the Ministry of Education.</p>
+                        </div>
+                    </div>
+                    <div class="requirement-item">
+                        <div class="requirement-marker">3</div>
+                        <div class="requirement-details">
+                            <h3 class="requirement-heading" data-i18n="requirement3Title">Government Assignment</h3>
+                            <p class="requirement-desc" data-i18n="requirement3Desc">Receive placement to {{ school_name }} through the official government admissions and assignment process.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="console-divider"></div>
+
+        <!-- Module 3: Process -->
+        <div class="console-module" data-module="process">
+            <div class="module-header">
+                <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <h2 class="module-title" data-i18n="processTitle">Admissions Process</h2>
+            </div>
+            <div class="module-content">
+                <div class="process-flow">
+                    <div class="process-step">
+                        <div class="step-number" data-i18n="step1Number">STEP 1</div>
+                        <div class="step-content">
+                            <h3 class="step-title" data-i18n="step1Title">Register for Exam</h3>
+                            <p class="step-desc" data-i18n="step1Desc">Register through the Ministry of Education portal during the official registration period.</p>
+                        </div>
+                    </div>
+                    <div class="process-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <polyline points="19 12 12 19 5 12"/>
+                        </svg>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number" data-i18n="step2Number">STEP 2</div>
+                        <div class="step-content">
+                            <h3 class="step-title" data-i18n="step2Title">Take National Exam</h3>
+                            <p class="step-desc" data-i18n="step2Desc">Complete the official STEM secondary school entrance examination at designated testing centers.</p>
+                        </div>
+                    </div>
+                    <div class="process-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <polyline points="19 12 12 19 5 12"/>
+                        </svg>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number" data-i18n="step3Number">STEP 3</div>
+                        <div class="step-content">
+                            <h3 class="step-title" data-i18n="step3Title">Await Results</h3>
+                            <p class="step-desc" data-i18n="step3Desc">Results and placement assignments are published by the Ministry of Education through official channels.</p>
+                        </div>
+                    </div>
+                    <div class="process-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <polyline points="19 12 12 19 5 12"/>
+                        </svg>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number" data-i18n="step4Number">STEP 4</div>
+                        <div class="step-content">
+                            <h3 class="step-title" data-i18n="step4Title">Receive Assignment</h3>
+                            <p class="step-desc" data-i18n="step4Desc">Students assigned to {{ school_name }} will be notified and provided enrollment instructions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="console-divider"></div>
+
+        <!-- Module 4: Important Notice -->
+        <div class="console-module console-module--notice" data-module="notice">
+            <div class="module-header">
+                <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                <h2 class="module-title" data-i18n="noticeTitle">Important Notice</h2>
+            </div>
+            <div class="module-content">
+                <p class="notice-text"><strong data-i18n="noticeText1">{{ school_name }} does not accept direct applications.</strong></p>
+                <p class="notice-text" data-i18n="noticeText2">All student placements are determined exclusively by the Egyptian Ministry of Education. The school enrolls only students officially assigned through the government admissions system.</p>
+                <p class="notice-text" data-i18n="noticeText3">For official information about STEM school admissions, please contact the Ministry of Education or visit their official portal.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Information Card -->
+    <div class="admissions-contact">
+        <div class="contact-card">
+            <h3 class="contact-title" data-i18n="enrolledStudentsTitle">For Enrolled Students</h3>
+            <p class="contact-desc" data-i18n="enrolledStudentsDesc">Students who have been officially assigned to {{ school_name }} may contact us for enrollment assistance.</p>
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <div>
+                        <p class="contact-label" data-i18n="emailLabel">Email</p>
+                        <p class="contact-value">info@behairastem.edu.eg</p>
+                    </div>
+                </div>
+                <div class="contact-method">
+                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <div>
+                        <p class="contact-label" data-i18n="locationLabel">Location</p>
+                        <p class="contact-value" data-i18n="locationValue">Behaira Governorate, Egypt</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Admissions Hero Section */
+    
+    .admissions-hero {
+        background: linear-gradient(135deg, #000a14 0%, #0a1f38 50%, #051428 100%);
+        padding: 100px 28px 60px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .admissions-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 20% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(0, 150, 255, 0.06) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    
+    .admissions-hero__content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .admissions-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        background: rgba(0, 229, 255, 0.1);
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        border-radius: 50px;
+        color: #00E5FF;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .badge-icon {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .admissions-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 56px;
+        font-weight: 800;
+        color: #FFFFFF;
+        margin: 0 0 20px 0;
+        line-height: 1.1;
+        animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+    
+    .admissions-subtitle {
+        font-size: 18px;
+        color: #CBD5E1;
+        line-height: 1.6;
+        max-width: 700px;
+        margin: 0 auto;
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    /* Admissions Console Container */
+    
+    .admissions-container {
+        max-width: 1100px;
+        margin: -40px auto 80px;
+        padding: 0 28px;
+        position: relative;
+        z-index: 10;
+    }
+    
+    .admissions-console {
+        background: rgba(10, 16, 32, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 229, 255, 0.2);
+        border-radius: 24px;
+        padding: 48px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        position: relative;
+        animation: consoleFloat 0.8s ease-out;
+    }
+    
+    .admissions-console::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent 0%, rgba(0, 229, 255, 0.5) 50%, transparent 100%);
+        border-radius: 24px 24px 0 0;
+    }
+    /* Console Modules */
+    
+    .console-module {
+        margin-bottom: 40px;
+        animation: fadeInUp 0.8s ease-out both;
+    }
+    
+    .console-module[data-module="authority"] {
+        animation-delay: 0.1s;
+    }
+    
+    .console-module[data-module="eligibility"] {
+        animation-delay: 0.2s;
+    }
+    
+    .console-module[data-module="process"] {
+        animation-delay: 0.3s;
+    }
+    
+    .console-module[data-module="notice"] {
+        animation-delay: 0.4s;
+    }
+    
+    .module-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 24px;
+    }
+    
+    .module-icon {
+        width: 28px;
+        height: 28px;
+        color: #00E5FF;
+        transition: all 0.3s ease;
+    }
+    
+    .console-module:hover .module-icon {
+        color: #00FFD1;
+        filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6));
+    }
+    
+    .module-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin: 0;
+        letter-spacing: 0.5px;
+    }
+    
+    .module-content {
+        padding-left: 42px;
+    }
+    
+    .module-text {
+        color: #CBD5E1;
+        font-size: 16px;
+        line-height: 1.7;
+        margin: 0 0 12px 0;
+    }
+    
+    .module-text strong {
+        color: #FFFFFF;
+        font-weight: 600;
+    }
+    /* Requirement List */
+    
+    .requirement-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .requirement-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 18px;
+        padding: 20px;
+        background: rgba(0, 229, 255, 0.03);
+        border-left: 2px solid rgba(0, 229, 255, 0.4);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .requirement-item:hover {
+        background: rgba(0, 229, 255, 0.06);
+        border-left-color: rgba(0, 229, 255, 0.7);
+        transform: translateX(4px);
+    }
+    
+    .requirement-marker {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(0, 229, 255, 0.15);
+        border: 2px solid rgba(0, 229, 255, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: #00E5FF;
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+    
+    .requirement-details {
+        flex: 1;
+    }
+    
+    .requirement-heading {
+        font-size: 17px;
+        font-weight: 600;
+        color: #FFFFFF;
+        margin: 0 0 8px 0;
+    }
+    
+    .requirement-desc {
+        font-size: 15px;
+        color: #94A3B8;
+        line-height: 1.6;
+        margin: 0;
+    }
+    /* Process Flow */
+    
+    .process-flow {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .process-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 24px;
+        background: rgba(0, 229, 255, 0.04);
+        border: 1px solid rgba(0, 229, 255, 0.15);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    
+    .process-step:hover {
+        background: rgba(0, 229, 255, 0.08);
+        border-color: rgba(0, 229, 255, 0.3);
+        transform: scale(1.02);
+    }
+    
+    .step-number {
+        padding: 8px 14px;
+        background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(0, 180, 255, 0.2));
+        border: 1px solid rgba(0, 229, 255, 0.4);
+        border-radius: 6px;
+        color: #00E5FF;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        flex-shrink: 0;
+    }
+    
+    .step-content {
+        flex: 1;
+    }
+    
+    .step-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #FFFFFF;
+        margin: 0 0 8px 0;
+    }
+    
+    .step-desc {
+        font-size: 15px;
+        color: #94A3B8;
+        line-height: 1.6;
+        margin: 0;
+    }
+    
+    .process-arrow {
+        display: flex;
+        justify-content: center;
+        padding: 8px 0;
+    }
+    
+    .process-arrow svg {
+        width: 24px;
+        height: 24px;
+        color: rgba(0, 229, 255, 0.4);
+    }
+    /* Notice Module */
+    
+    .console-module--notice {
+        background: rgba(0, 229, 255, 0.05);
+        border: 1px solid rgba(0, 229, 255, 0.25);
+        border-radius: 16px;
+        padding: 28px;
+        margin-bottom: 0;
+    }
+    
+    .notice-text {
+        color: #E5E7EB;
+        font-size: 15px;
+        line-height: 1.7;
+        margin: 0 0 12px 0;
+    }
+    
+    .notice-text:last-child {
+        margin-bottom: 0;
+    }
+    
+    .notice-text strong {
+        color: #FFFFFF;
+        font-weight: 600;
+    }
+    /* Console Divider */
+    
+    .console-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(0, 229, 255, 0.2) 50%, transparent 100%);
+        margin: 40px 0;
+    }
+    /* Contact Card */
+    
+    .admissions-contact {
+        margin-top: 40px;
+    }
+    
+    .contact-card {
+        background: rgba(10, 16, 32, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 229, 255, 0.15);
+        border-radius: 16px;
+        padding: 36px;
+        animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+    
+    .contact-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin: 0 0 12px 0;
+    }
+    
+    .contact-desc {
+        font-size: 15px;
+        color: #94A3B8;
+        line-height: 1.6;
+        margin: 0 0 28px 0;
+    }
+    
+    .contact-methods {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 24px;
+    }
+    
+    .contact-method {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 16px;
+        background: rgba(0, 229, 255, 0.05);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .contact-method:hover {
+        background: rgba(0, 229, 255, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .contact-icon {
+        width: 24px;
+        height: 24px;
+        color: #00E5FF;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+    
+    .contact-label {
+        font-size: 12px;
+        color: #64748B;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+        margin: 0 0 4px 0;
+    }
+    
+    .contact-value {
+        font-size: 15px;
+        color: #E5E7EB;
+        font-weight: 500;
+        margin: 0;
+    }
+    /* Animations */
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes consoleFloat {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    /* Responsive Design */
+    
+    @media (max-width: 768px) {
+        .admissions-title {
+            font-size: 40px;
+        }
+        .admissions-console {
+            padding: 32px 24px;
+        }
+        .module-content {
+            padding-left: 0;
+        }
+        .contact-methods {
+            grid-template-columns: 1fr;
+        }
+        .process-step {
+            flex-direction: column;
+        }
+    }
+    /* Light Mode Adaptations */
+    
+    body.light-mode .admissions-hero {
+        background: linear-gradient(135deg, #E0F2FE 0%, #DBEAFE 50%, #E0F7FA 100%);
+    }
+    
+    body.light-mode .admissions-title {
+        color: #0F172A;
+    }
+    
+    body.light-mode .admissions-subtitle {
+        color: #475569;
+    }
+    
+    body.light-mode .admissions-console {
+        background: rgba(255, 255, 255, 0.95);
+        border-color: rgba(59, 130, 246, 0.2);
+    }
+    
+    body.light-mode .module-title {
+        color: #0F172A;
+    }
+    
+    body.light-mode .module-text {
+        color: #475569;
+    }
+    
+    body.light-mode .module-text strong {
+        color: #0F172A;
+    }
+    
+    body.light-mode .requirement-item {
+        background: rgba(59, 130, 246, 0.05);
+        border-left-color: rgba(59, 130, 246, 0.4);
+    }
+    
+    body.light-mode .requirement-heading {
+        color: #0F172A;
+    }
+    
+    body.light-mode .requirement-desc {
+        color: #64748B;
+    }
+    
+    body.light-mode .step-title {
+        color: #0F172A;
+    }
+    
+    body.light-mode .step-desc {
+        color: #64748B;
+    }
+    
+    body.light-mode .notice-text {
+        color: #334155;
+    }
+    
+    body.light-mode .notice-text strong {
+        color: #0F172A;
+    }
+    
+    body.light-mode .contact-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-color: rgba(59, 130, 246, 0.2);
+    }
+    
+    body.light-mode .contact-title {
+        color: #0F172A;
+    }
+    
+    body.light-mode .contact-desc {
+        color: #64748B;
+    }
+    
+    body.light-mode .contact-value {
+        color: #334155;
+    }
+    /* Reduced Motion */
+    
+    @media (prefers-reduced-motion: reduce) {
+        .admissions-console,
+        .console-module,
+        .contact-card {
+            animation: none;
+        }
+        .requirement-item:hover,
+        .process-step:hover,
+        .contact-method:hover {
+            transform: none;
+        }
+    }
+</style>
+
+{% endblock %}

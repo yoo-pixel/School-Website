@@ -1,0 +1,236 @@
+{% extends "base.html" %} {% block title %}Dashboard — {{ SCHOOL_NAME }}{% endblock %} {% block content %}
+<div class="dashboard-container">
+    <!-- Welcome Header -->
+    <div class="dashboard-header">
+        <div class="dashboard-welcome">
+            <h1 class="dashboard-title">Welcome back, {{ user.name.split()[0] }}!</h1>
+            <p class="dashboard-subtitle">Track your progress and explore STEM opportunities</p>
+        </div>
+        <div class="dashboard-actions">
+            {% if user.role == 'admin' %}
+            <a href="{{ url_for('admin_panel') }}" class="dashboard-logout" style="background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); color: white;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.31V7Z" fill="currentColor"/>
+                </svg>
+                <span>🔐 Admin Panel</span>
+            </a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}" class="dashboard-logout">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 3L15 5L9 11L15 17L13 19L5 11L13 3Z" fill="currentColor"/>
+                </svg>
+                <span>Log Out</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <div class="stat-icon stat-icon--programs">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <p class="stat-label">Saved Programs</p>
+                <p class="stat-value">{{ saved_programs|length }}</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon stat-icon--resources">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.5 2H20V22H6.5A2.5 2.5 0 0 1 4 19.5V4.5A2.5 2.5 0 0 1 6.5 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <p class="stat-label">Bookmarked Resources</p>
+                <p class="stat-value">{{ bookmarked_resources|length }}</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon stat-icon--activity">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <p class="stat-label">Days Active</p>
+                <p class="stat-value">{{ days_active }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="dashboard-grid">
+        <!-- Saved Programs Section -->
+        <section class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Saved Programs</h2>
+                <a href="{{ url_for('programs') }}" class="section-link">Browse all →</a>
+            </div>
+
+            {% if saved_programs %}
+            <div class="program-cards">
+                {% for program in saved_programs[:3] %}
+                <div class="program-card">
+                    <div class="program-card-header">
+                        <span class="program-level program-level--{{ program.level|lower|replace(' ', '-') }}">
+                                    {{ program.level }}
+                                </span>
+                        <button class="program-bookmark program-bookmark--active" data-program-id="{{ program.id }}">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 0C3.89543 0 3 0.895431 3 2V20L10 15L17 20V2C17 0.895431 16.1046 0 15 0H5Z"/>
+                                    </svg>
+                                </button>
+                    </div>
+                    <h3 class="program-card-title">{{ program.name }}</h3>
+                    <p class="program-card-org">{{ program.organization }}</p>
+                    <p class="program-card-desc">{{ program.description[:100] }}...</p>
+                    <a href="{{ url_for('program_detail', program_id=program.id) }}" class="program-card-link">
+                                View details →
+                            </a>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <svg class="empty-icon" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="12" y="16" width="40" height="40" rx="4" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/>
+                        <path d="M32 28V40M26 34H38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                <p class="empty-text">No saved programs yet</p>
+                <a href="{{ url_for('programs') }}" class="empty-action">Explore programs</a>
+            </div>
+            {% endif %}
+        </section>
+
+        <!-- Bookmarked Resources Section -->
+        <section class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Bookmarked Resources</h2>
+                <a href="{{ url_for('writing_basics') }}" class="section-link">View all →</a>
+            </div>
+
+            {% if bookmarked_resources %}
+            <div class="resource-list">
+                {% for resource in bookmarked_resources[:4] %}
+                <div class="resource-item">
+                    <div class="resource-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 4H16V16H4V4Z" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M8 2V6M12 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                    </div>
+                    <div class="resource-content">
+                        <h4 class="resource-title">{{ resource.title }}</h4>
+                        <p class="resource-type">{{ resource.type }}</p>
+                    </div>
+                    <a href="{{ resource.url }}" class="resource-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state empty-state--compact">
+                <p class="empty-text">No bookmarked resources yet</p>
+                <a href="{{ url_for('writing_basics') }}" class="empty-action">Browse writing resources</a>
+            </div>
+            {% endif %}
+        </section>
+
+        <!-- Recommendations Section -->
+        <section class="dashboard-section dashboard-section--full">
+            <div class="section-header">
+                <h2 class="section-title">Recommended for You</h2>
+            </div>
+
+            <div class="recommendations">
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">📚</div>
+                    <div class="recommendation-content">
+                        <h3 class="recommendation-title">Continue Learning</h3>
+                        <p class="recommendation-text">Check out our writing guides to improve your essays and applications</p>
+                    </div>
+                    <a href="{{ url_for('writing_basics') }}" class="recommendation-button">Start</a>
+                </div>
+
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">🎯</div>
+                    <div class="recommendation-content">
+                        <h3 class="recommendation-title">Explore Programs</h3>
+                        <p class="recommendation-text">Discover STEM opportunities at all levels—from accessible to top-tier</p>
+                    </div>
+                    <a href="{{ url_for('programs') }}" class="recommendation-button">Explore</a>
+                </div>
+
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">🤖</div>
+                    <div class="recommendation-content">
+                        <h3 class="recommendation-title">Ask the AI Assistant</h3>
+                        <p class="recommendation-text">Get personalized guidance on programs, writing, and admissions</p>
+                    </div>
+                    <button id="openAssistantFromDashboard" class="recommendation-button">Chat Now</button>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+    // Open AI assistant from dashboard
+    document.getElementById('openAssistantFromDashboard') ? .addEventListener('click', function() {
+        const assistantToggle = document.getElementById('assistantToggle');
+        if (assistantToggle) {
+            assistantToggle.click();
+        }
+    });
+    // Bookmark toggle with AJAX
+    document.querySelectorAll('.program-bookmark').forEach(btn => {
+        btn.addEventListener('click', async function(e) {
+            e.preventDefault();
+            const programId = this.dataset.programId;
+            const button = this;
+
+            try {
+                const response = await fetch(`/api/save-program/${programId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    if (data.action === 'unsaved') {
+                        // Remove the program card from the page
+                        button.closest('.program-card').style.opacity = '0';
+                        setTimeout(() => {
+                            button.closest('.program-card').remove();
+                            // Check if there are no more programs, show empty state
+                            const programCards = document.querySelector('.program-cards');
+                            if (programCards && programCards.children.length === 0) {
+                                location.reload(); // Reload to show empty state
+                            }
+                        }, 300);
+                    }
+                } else {
+                    alert('Failed to update bookmark: ' + (data.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error toggling bookmark:', error);
+                alert('Failed to update bookmark. Please try again.');
+            }
+        });
+    });
+</script>
+{% endblock %}

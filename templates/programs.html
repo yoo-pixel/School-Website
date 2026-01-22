@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block content %}
+<section class="section">
+    <div class="container">
+        <p class="eyebrow">Programs</p>
+        <h1 class="mb-3">Programs at {{ school_name }}</h1>
+        <p class="muted">Every pathway blends lab time, competitions, and community impact so students learn by building.</p>
+
+        <div class="row g-3 mt-3">
+            {% for program in programs %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ program.name }}</h5>
+                        <p class="card-text">{{ program.summary }}</p>
+                        <span class="badge bg-warning text-dark">Project based</span>
+                        <span class="badge bg-dark text-light">Mentor led</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4 p-3 bg-light border rounded d-flex align-items-center gap-3">
+            <div class="fs-1">🛠️</div>
+            <div>
+                <h5 class="mb-1">Makerspace access</h5>
+                <p class="mb-0">Students prototype with 3D printers, CNC, electronics benches, and collaborative coding pods all year.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

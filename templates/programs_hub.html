@@ -1,0 +1,220 @@
+{% extends "base.html" %} {% block title %}Programs for STEM Students | {{ school_name }}{% endblock %} {% block content %}
+<div class="hub-hero">
+    <div class="hub-hero__content">
+        <p class="eyebrow--space">GLOBAL OPPORTUNITIES</p>
+        <h1 class="h1--space">Programs for STEM Students</h1>
+        <p class="p--space" style="max-width: 700px; margin: 0 auto;">Explore world-class research, summer schools, competitions, and scholarships. We've organized programs into three levels to help you find the right fit.</p>
+    </div>
+</div>
+
+<div class="hub-container">
+    <div class="hub-cards">
+        <!-- TOP-TIER CARD -->
+        <a href="/programs/top-tier" class="hub-card hub-card--elite">
+            <div class="hub-card__icon">🏆</div>
+            <h2 class="hub-card__title">Top-Tier Programs</h2>
+            <p class="hub-card__desc">Highly selective programs from world-leading institutions. Most prestigious research and summer programs.</p>
+            <div class="hub-card__meta">
+                <div class="meta-item"><strong>Selectivity:</strong> &lt;10% acceptance</div>
+                <div class="meta-item"><strong>Cost:</strong> Free to $10K+ (aid available)</div>
+                <div class="meta-item"><strong>Audience:</strong> Top 1-5% students globally</div>
+            </div>
+            <div class="hub-card__button">Explore Top-Tier Programs →</div>
+        </a>
+
+        <!-- ACHIEVABLE CARD -->
+        <a href="/programs/achievable" class="hub-card hub-card--achievable">
+            <div class="hub-card__icon">⭐</div>
+            <h2 class="hub-card__title">Achievable Programs</h2>
+            <p class="hub-card__desc">Competitive but realistic programs for motivated students. Strong university programs and national competitions.</p>
+            <div class="hub-card__meta">
+                <div class="meta-item"><strong>Selectivity:</strong> 10-30% acceptance</div>
+                <div class="meta-item"><strong>Cost:</strong> Free to $8K (aid often available)</div>
+                <div class="meta-item"><strong>Audience:</strong> Strong academics, demonstrated interest</div>
+            </div>
+            <div class="hub-card__button">Explore Achievable Programs →</div>
+        </a>
+
+        <!-- ACCESSIBLE CARD -->
+        <a href="/programs/accessible" class="hub-card hub-card--accessible">
+            <div class="hub-card__icon">🌟</div>
+            <h2 class="hub-card__title">Accessible Programs</h2>
+            <p class="hub-card__desc">Open and entry-level programs for exploration and skill-building. Perfect for beginners.</p>
+            <div class="hub-card__meta">
+                <div class="meta-item"><strong>Selectivity:</strong> Open or rolling admissions</div>
+                <div class="meta-item"><strong>Cost:</strong> Often free or low-cost</div>
+                <div class="meta-item"><strong>Audience:</strong> All students welcome</div>
+            </div>
+            <div class="hub-card__button">Explore Accessible Programs →</div>
+        </a>
+    </div>
+</div>
+
+<style>
+    .hub-hero {
+        background: linear-gradient(135deg, #000a14 0%, #0a1f38 50%, #051428 100%);
+        padding: 80px 28px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .hub-hero::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.05) 0%, transparent 60%);
+        pointer-events: none;
+    }
+    
+    .hub-hero__content {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .hub-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 28px;
+    }
+    
+    .hub-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 32px;
+    }
+    
+    .hub-card {
+        background: rgba(15, 23, 42, 0.8);
+        border: 2px solid rgba(0, 229, 255, 0.2);
+        border-radius: 20px;
+        padding: 40px;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hub-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .hub-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 60px rgba(0, 229, 255, 0.2);
+        border-color: rgba(0, 229, 255, 0.5);
+    }
+    
+    .hub-card:hover::before {
+        opacity: 1;
+    }
+    
+    .hub-card--elite {
+        border-color: rgba(255, 215, 0, 0.3);
+    }
+    
+    .hub-card--elite:hover {
+        border-color: rgba(255, 215, 0, 0.6);
+        box-shadow: 0 20px 60px rgba(255, 215, 0, 0.15);
+    }
+    
+    .hub-card--achievable {
+        border-color: rgba(0, 229, 255, 0.3);
+    }
+    
+    .hub-card--achievable:hover {
+        border-color: rgba(0, 229, 255, 0.6);
+        box-shadow: 0 20px 60px rgba(0, 229, 255, 0.2);
+    }
+    
+    .hub-card--accessible {
+        border-color: rgba(124, 252, 0, 0.3);
+    }
+    
+    .hub-card--accessible:hover {
+        border-color: rgba(124, 252, 0, 0.6);
+        box-shadow: 0 20px 60px rgba(124, 252, 0, 0.15);
+    }
+    
+    .hub-card__icon {
+        font-size: 48px;
+        line-height: 1;
+    }
+    
+    .hub-card__title {
+        color: #FFFFFF;
+        font-size: 28px;
+        font-weight: 800;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .hub-card__desc {
+        color: #CBD5E1;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0;
+    }
+    
+    .hub-card__meta {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 0;
+        border-top: 1px solid rgba(0, 229, 255, 0.1);
+        border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+    }
+    
+    .meta-item {
+        color: #E5E7EB;
+        font-size: 14px;
+    }
+    
+    .meta-item strong {
+        color: var(--cyan-electric);
+        font-weight: 600;
+    }
+    
+    .hub-card__button {
+        color: var(--cyan-electric);
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+        padding: 16px;
+        background: rgba(0, 229, 255, 0.1);
+        border-radius: 12px;
+        transition: all 0.2s ease;
+    }
+    
+    .hub-card:hover .hub-card__button {
+        background: rgba(0, 229, 255, 0.2);
+        transform: translateX(4px);
+    }
+    
+    @media (max-width: 768px) {
+        .hub-cards {
+            grid-template-columns: 1fr;
+        }
+        .hub-hero {
+            padding: 60px 20px;
+        }
+        .hub-container {
+            padding: 60px 20px;
+        }
+    }
+</style>
+
+{% endblock %}

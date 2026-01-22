@@ -1,0 +1,209 @@
+{% extends 'base.html' %} {% block title %}Manage Users — {{ SCHOOL_NAME }}{% endblock %} {% block content %}
+<style>
+    .users-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    
+    .users-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e0e0e0;
+    }
+    
+    .users-header h1 {
+        margin: 0;
+        color: #1a1a1a;
+    }
+    
+    .back-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .back-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+    
+    .users-table {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    th {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 16px;
+        text-align: left;
+        font-weight: 600;
+    }
+    
+    td {
+        padding: 16px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    tbody tr:hover {
+        background: #f9f9f9;
+    }
+    
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+    
+    .user-role {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
+    .role-admin {
+        background: #ffeaa7;
+        color: #d63031;
+    }
+    
+    .role-visitor {
+        background: #dfe6e9;
+        color: #2d3436;
+    }
+    
+    .user-email {
+        color: #667eea;
+        font-size: 14px;
+    }
+    
+    .date-small {
+        color: #999;
+        font-size: 13px;
+    }
+    
+    .user-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    
+    .stat-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+    }
+    
+    .stat-box-number {
+        font-size: 28px;
+        font-weight: bold;
+    }
+    
+    .stat-box-label {
+        font-size: 13px;
+        opacity: 0.9;
+        margin-top: 8px;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: #999;
+    }
+</style>
+
+<div class="users-container">
+    <!-- Header -->
+    <div class="users-header">
+        <h1>👥 Manage Users</h1>
+        <a href="{{ url_for('admin_panel') }}" class="back-btn">← Back to Admin</a>
+    </div>
+
+    <!-- Stats -->
+    <div class="user-stats">
+        <div class="stat-box">
+            <div class="stat-box-number">{{ users | length }}</div>
+            <div class="stat-box-label">Total Users</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-box-number">{{ users | selectattr('role', 'equalto', 'admin') | list | length }}</div>
+            <div class="stat-box-label">Administrators</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-box-number">{{ users | selectattr('role', 'equalto', 'visitor') | list | length }}</div>
+            <div class="stat-box-label">Visitors</div>
+        </div>
+    </div>
+
+    <!-- Users Table -->
+    {% if users %}
+    <div class="users-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Joined</th>
+                    <th>Saved Programs</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>
+                        <strong>{{ user.name }}</strong>
+                    </td>
+                    <td>
+                        <span class="user-email">{{ user.email }}</span>
+                    </td>
+                    <td>
+                        <span class="user-role role-{{ user.role }}">
+                                    {% if user.role == 'admin' %}🔐 Admin{% else %}👤 Visitor{% endif %}
+                                </span>
+                    </td>
+                    <td>
+                        <span class="date-small">
+                                    {% if user.created_at %}
+                                        {{ user.created_at[:10] }}
+                                    {% else %}
+                                        Unknown
+                                    {% endif %}
+                                </span>
+                    </td>
+                    <td>
+                        <span class="date-small">{{ user.saved_programs | length }} programs</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="users-table">
+        <div class="empty-state">
+            <div style="font-size: 48px; margin-bottom: 12px;">👤</div>
+            <p>No users registered yet.</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

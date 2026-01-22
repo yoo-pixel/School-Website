@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Global STEM Programs | {{ school_name }}{% endblock %}
+
+{% block content %}
+<div class="hero-banner hero-banner--space">
+    <div class="hero-banner__content hero-banner__content--3d" id="heroContent">
+        <p class="eyebrow--space">GLOBAL OPPORTUNITIES</p>
+        <h1 class="h1--space">Explore World-Class STEM Programs</h1>
+        <p class="p--space">Discover research internships, summer schools, competitions, and innovation opportunities from the world's leading institutions.</p>
+        <div class="hero-banner__actions">
+            <a href="/programs/listing" class="button button--space">Browse All Programs</a>
+            <a href="#categories" class="button button--space-ghost">Learn More</a>
+        </div>
+    </div>
+</div>
+
+<section class="section section--space" id="categories">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 28px;">
+        <div class="section__header">
+            <h2 class="h2--space">Three Pathways to Excellence</h2>
+            <p class="p--space">Programs are categorized by competitiveness and accessibility. Choose the pathway that matches your goals and current level.</p>
+        </div>
+
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); margin-top: 48px;">
+            <!-- TOP-TIER CARD -->
+            <div class="card--space">
+                <div style="font-size: 36px; margin-bottom: 16px; opacity: 0.9;">🏆</div>
+                <h3 style="color: #FFFFFF; font-weight: 800; margin: 0 0 12px 0; font-family: 'Poppins', sans-serif;">Top-Tier Programs</h3>
+                <p class="p--space" style="margin: 0 0 16px 0;">Ultra-competitive programs from MIT, Caltech, Harvard, and other world-leading institutions.</p>
+                <div style="margin: 16px 0; padding: 12px; background: rgba(0, 229, 255, 0.1); border-left: 3px solid var(--cyan-electric); border-radius: 4px;">
+                    <p class="muted--space" style="margin: 0; font-size: 14px;">📊 Highly Selective | 🌍 Global Recognition | 🔬 Research-Focused</p>
+                </div>
+                <a href="/programs/listing?level=Top-Tier" class="button button--space" style="margin-top: 20px; width: 100%; text-align: center;">Explore Top-Tier</a>
+            </div>
+
+            <!-- ACHIEVABLE CARD -->
+            <div class="card--space">
+                <div style="font-size: 36px; margin-bottom: 16px; opacity: 0.9;">⭐</div>
+                <h3 style="color: #FFFFFF; font-weight: 800; margin: 0 0 12px 0; font-family: 'Poppins', sans-serif;">Achievable Programs</h3>
+                <p class="p--space" style="margin: 0 0 16px 0;">Strong programs from respected universities with selective but achievable admissions criteria.</p>
+                <div style="margin: 16px 0; padding: 12px; background: rgba(0, 229, 255, 0.1); border-left: 3px solid var(--cyan-electric); border-radius: 4px;">
+                    <p class="muted--space" style="margin: 0; font-size: 14px;">📈 Moderate Selectivity | 🎯 Clear Criteria | 🚀 Strong Outcomes</p>
+                </div>
+                <a href="/programs/listing?level=Achievable" class="button button--space" style="margin-top: 20px; width: 100%; text-align: center;">Explore Achievable</a>
+            </div>
+
+            <!-- ACCESSIBLE CARD -->
+            <div class="card--space">
+                <div style="font-size: 36px; margin-bottom: 16px; opacity: 0.9;">🌟</div>
+                <h3 style="color: #FFFFFF; font-weight: 800; margin: 0 0 12px 0; font-family: 'Poppins', sans-serif;">Accessible Programs</h3>
+                <p class="p--space" style="margin: 0 0 16px 0;">Free and low-cost programs, online courses, and competitions open to all STEM students.</p>
+                <div style="margin: 16px 0; padding: 12px; background: rgba(0, 229, 255, 0.1); border-left: 3px solid var(--cyan-electric); border-radius: 4px;">
+                    <p class="muted--space" style="margin: 0; font-size: 14px;">💰 Free/Affordable | 🌐 Global Access | ✅ Beginner-Friendly</p>
+                </div>
+                <a href="/programs/listing?level=Accessible" class="button button--space" style="margin-top: 20px; width: 100%; text-align: center;">Explore Accessible</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--space">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 28px;">
+        <h2 class="h2--space">How to Choose a Program</h2>
+
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 32px;">
+            <div class="tile--space">
+                <div style="font-size: 28px; margin-bottom: 12px;">🎓</div>
+                <h3 style="color: #FFFFFF; font-weight: 700; margin: 0 0 8px 0;">Assess Your Level</h3>
+                <p class="p--space" style="margin: 0; font-size: 14px;">Start with "Accessible" programs to build confidence, then progress to "Achievable" and "Top-Tier" as you gain experience.</p>
+            </div>
+            <div class="tile--space">
+                <div style="font-size: 28px; margin-bottom: 12px;">🔍</div>
+                <h3 style="color: #FFFFFF; font-weight: 700; margin: 0 0 8px 0;">Filter by Interest</h3>
+                <p class="p--space" style="margin: 0; font-size: 14px;">Choose programs aligned with your STEM interests: research, engineering, competitions, or entrepreneurship.</p>
+            </div>
+            <div class="tile--space">
+                <div style="font-size: 28px; margin-bottom: 12px;">⏰</div>
+                <h3 style="color: #FFFFFF; font-weight: 700; margin: 0 0 8px 0;">Plan Timing</h3>
+                <p class="p--space" style="margin: 0; font-size: 14px;">Check application deadlines and duration. Summer programs typically apply in Dec–May; competitions run year-round.</p>
+            </div>
+            <div class="tile--space">
+                <div style="font-size: 28px; margin-bottom: 12px;">💼</div>
+                <h3 style="color: #FFFFFF; font-weight: 700; margin: 0 0 8px 0;">Build Your Portfolio</h3>
+                <p class="p--space" style="margin: 0; font-size: 14px;">Participate in multiple programs across different categories to strengthen college applications and your STEM foundation.</p>
+            </div>
+            <div class="tile--space">
+                <div style="font-size: 28px; margin-bottom: 12px;">🤝</div>
+                <h3 style="color: #FFFFFF; font-weight: 700; margin: 0 0 8px 0;">Seek Mentorship</h3>
+                <p class="p--space" style="margin: 0; font-size: 14px;">Ask teachers and advisors for recommendations. Many programs benefit from strong recommendation letters.</p>
+            </div>
+            <div class="tile--space">
+                <div style="font-size: 28px; margin-bottom: 12px;">🎯</div>
+                <h3 style="color: #FFFFFF; font-weight: 700; margin: 0 0 8px 0;">Don't Overthink It</h3>
+                <p class="p--space" style="margin: 0; font-size: 14px;">Apply to programs that interest you—the best program is the one that excites you most.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--space">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 28px; text-align: center;">
+        <h2 class="h2--space">Ready to Get Started?</h2>
+        <p class="p--space" style="max-width: 600px; margin: 16px auto 32px;">Browse our curated list of 40+ global STEM programs, filter by your interests and qualifications, and discover your next opportunity.</p>
+        <a href="/programs/listing" class="button button--space" style="font-size: 16px; padding: 14px 32px;">Browse All Programs</a>
+    </div>
+</section>
+
+{% endblock %}

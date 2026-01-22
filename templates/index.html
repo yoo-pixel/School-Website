@@ -1,0 +1,176 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Intro Section -->
+<section class="intro-section" id="introSection">
+    <canvas id="introCanvas" class="intro-canvas"></canvas>
+
+    <div class="intro-container">
+        <!-- Header -->
+        <div class="intro-header">
+            <h1 class="intro-title" data-i18n="introTitle">STEM Beheira</h1>
+            <p class="intro-subtitle" data-i18n="introSubtitle">A public STEM high school preparing students for science, technology, engineering, and mathematics careers</p>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="intro-grid">
+            <!-- Block 1: What -->
+            <div class="intro-card">
+                <div class="intro-card__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h3 class="intro-card__title" data-i18n="introWhatTitle">What We Are</h3>
+                <p class="intro-card__text" data-i18n="introWhatText">STEM Beheira is a government-run secondary school specializing in science and technology education. Students are admitted through national examination and follow an advanced curriculum focused on hands-on learning.</p>
+            </div>
+
+            <!-- Block 2: Why -->
+            <div class="intro-card">
+                <div class="intro-card__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4"/>
+                        <path d="M12 8h.01"/>
+                    </svg>
+                </div>
+                <h3 class="intro-card__title" data-i18n="introWhyTitle">Why We Exist</h3>
+                <p class="intro-card__text" data-i18n="introWhyText">Egypt needs skilled scientists, engineers, and innovators to address national challenges and contribute to global progress. This school develops students who can apply scientific knowledge to solve real-world problems.</p>
+            </div>
+
+            <!-- Block 3: How -->
+            <div class="intro-card">
+                <div class="intro-card__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                </div>
+                <h3 class="intro-card__title" data-i18n="introHowTitle">How Students Learn</h3>
+                <p class="intro-card__text" data-i18n="introHowText">Through project-based learning in labs and workshops. Students conduct research, build prototypes, code software, and participate in competitions. Learning emphasizes practical application over memorization.</p>
+            </div>
+
+            <!-- Block 4: What Students Gain -->
+            <div class="intro-card">
+                <div class="intro-card__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                    </svg>
+                </div>
+                <h3 class="intro-card__title" data-i18n="introGainTitle">What Students Gain</h3>
+                <p class="intro-card__text" data-i18n="introGainText">Technical skills, research experience, and scientific thinking. Graduates are prepared for university STEM programs and can access global opportunities including research programs, competitions, and scholarships.</p>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="intro-actions">
+            <a class="intro-btn intro-btn--primary" href="{{ url_for('admissions') }}" data-i18n="introAdmissionsBtn">Learn About Admissions</a>
+            <a class="intro-btn intro-btn--secondary" href="{{ url_for('programs') }}" data-i18n="introProgramsBtn">Explore Opportunities</a>
+        </div>
+    </div>
+</section>
+
+<section id="programs" class="section section--space">
+    <canvas id="programsCanvas" class="asteroids-canvas-small"></canvas>
+    <header class="section__header">
+        <p class="eyebrow eyebrow--space" data-i18n="globalProgramsEyebrow">Global Programs</p>
+        <h2 class="h2--space" data-i18n="globalProgramsTitle">Discover world-class STEM opportunities</h2>
+        <p class="muted muted--space" data-i18n="globalProgramsDesc">Explore 100+ programs from elite institutions worldwide, organized by competitiveness level.</p>
+    </header>
+    <div class="programs-categories">
+        <a href="/programs/top-tier" class="program-category-card program-category-card--elite" style="text-decoration: none;">
+            <div class="category-icon">🏆</div>
+            <h3 class="category-title" data-i18n="topTierTitle">Top-Tier Programs</h3>
+            <p class="category-desc" data-i18n="topTierDesc">Elite programs from MIT, Oxford, Cambridge, and other world-leading institutions. Highly selective opportunities for exceptional students.</p>
+            <div class="category-meta">
+                <span class="meta-badge" data-i18n="topTierPrograms">15 Programs</span>
+                <span class="meta-badge" data-i18n="topTierAcceptance">&lt;10% Acceptance</span>
+            </div>
+            <div class="category-btn category-btn--elite" data-i18n="topTierBtn">Explore Elite Programs →</div>
+        </a>
+
+        <a href="/programs/achievable" class="program-category-card program-category-card--achievable" style="text-decoration: none;">
+            <div class="category-icon">⭐</div>
+            <h3 class="category-title" data-i18n="achievableTitle">Achievable Programs</h3>
+            <p class="category-desc" data-i18n="achievableDesc">Competitive programs from top universities like Stanford, Johns Hopkins, and Duke. Within reach with solid preparation.</p>
+            <div class="category-meta">
+                <span class="meta-badge" data-i18n="achievablePrograms">35 Programs</span>
+                <span class="meta-badge" data-i18n="achievableAcceptance">10-30% Acceptance</span>
+            </div>
+            <div class="category-btn category-btn--achievable" data-i18n="achievableBtn">Explore Achievable Programs →</div>
+        </a>
+
+        <a href="/programs/accessible" class="program-category-card program-category-card--accessible" style="text-decoration: none;">
+            <div class="category-icon">🌟</div>
+            <h3 class="category-title" data-i18n="accessibleTitle">Accessible Programs</h3>
+            <p class="category-desc" data-i18n="accessibleDesc">Open-enrollment programs and scholarships for all students. Build foundational skills and explore STEM fields at your pace.</p>
+            <div class="category-meta">
+                <span class="meta-badge" data-i18n="accessiblePrograms">50 Programs</span>
+                <span class="meta-badge" data-i18n="accessibleAcceptance">Open Admission</span>
+            </div>
+            <div class="category-btn category-btn--accessible" data-i18n="accessibleBtn">Explore Accessible Programs →</div>
+        </a>
+    </div>
+    <div class="programs-hub-link">
+        <a href="/programs" class="button button--space-ghost" data-i18n="viewAllProgramsBtn">View All Programs Hub →</a>
+    </div>
+</section>
+
+<section id="highlights" class="section section--soft">
+    <header class="section__header">
+        <p class="eyebrow" data-i18n="highlightsEyebrow">Highlights</p>
+        <h2 data-i18n="highlightsTitle">Students leading the way</h2>
+    </header>
+    <div class="grid">
+        {% for item in highlights %}
+        <article class="tile tile--outline">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.detail }}</p>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="admissions" class="section section--space">
+    <canvas id="admissionsCanvas" class="asteroids-canvas-small"></canvas>
+    <header class="section__header">
+        <p class="eyebrow eyebrow--space" data-i18n="admissionsEyebrow">Admissions</p>
+        <h2 class="h2--space" data-i18n="admissionsTitle">Ready to apply?</h2>
+        <p class="muted muted--space" data-i18n="admissionsDesc">Applications open now for Fall {{ current_year + 1 }}. We review academics, curiosity, and maker projects.</p>
+    </header>
+    <div class="admissions">
+        <div class="admissions__card card card--space">
+            <div class="card__title" data-i18n="keyDatesTitle">Key dates</div>
+            <ul class="card__list">
+                <li data-i18n="keyDate1">Info session: Feb 10</li>
+                <li data-i18n="keyDate2">Application deadline: Mar 15</li>
+                <li data-i18n="keyDate3">Interviews: Apr 1-10</li>
+            </ul>
+            <a class="button button--space" href="mailto:admissions@behairastem.edu" data-i18n="emailAdmissionsBtn">Email admissions</a>
+        </div>
+        <div class="admissions__text admissions__text--space">
+            <p data-i18n="portfolioWelcome"><strong>Portfolio welcome:</strong> Share robotics builds, code repos, science fair projects, or design sketches.</p>
+            <p data-i18n="shadowStudent"><strong>Shadow a student:</strong> Spend a day in our labs to see if Behaira STEM School is a fit.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="section section--soft">
+    <header class="section__header">
+        <p class="eyebrow" data-i18n="contactEyebrow">Contact</p>
+        <h2 data-i18n="contactTitle">Ask a question</h2>
+    </header>
+    <div class="contact">
+        <div class="card">
+            <div class="card__title" data-i18n="contactDetailsTitle">Want details?</div>
+            <p class="muted" data-i18n="contactDetailsDesc">Head to our contact page to send a note and see recent inquiries.</p>
+            <a class="button" href="{{ url_for('contact') }}" data-i18n="contactPageBtn">Contact page</a>
+        </div>
+
+        <div class="card">
+            <div class="card__title" data-i18n="visitSchoolTitle">Visit Behaira STEM School</div>
+            <p data-i18n="visitSchoolAddress">Behaira STEM School<br>Innovation District, Behaira<br>Saturday Open Labs: 10:00 AM - 1:00 PM</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

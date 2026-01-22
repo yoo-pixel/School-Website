@@ -1,0 +1,101 @@
+{% extends 'base.html' %} {% block title %}Essay Examples | {{ school_name }}{% endblock %} {% block content %}
+<div class="writing-page">
+    <section class="writing-hero">
+        <div class="writing-hero__content">
+            <h1 class="writing-hero__title">Essay Examples Library</h1>
+            <p class="writing-hero__subtitle">Read complete essays from classic books (shareable links, no purchase), then analyze what makes them powerful.</p>
+            <div class="writing-hero__actions">
+                <a class="hero-btn" href="{{ url_for('writing_basics') }}">Basics →</a>
+                <a class="hero-btn hero-btn--ghost" href="{{ url_for('writing_resources') }}">Resources →</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="writing-container">
+        <section class="writing-section">
+            <h2 class="section-title">Featured Full Essays (Public Domain)</h2>
+            <p class="section-intro">These essays come directly from books now in the public domain. Each card includes the full text and a shareable link.</p>
+            <div class="essay-grid">
+                <article class="essay-card">
+                    <div class="card-badge">Concise</div>
+                    <h3 class="essay-card__title">Of Studies</h3>
+                    <p class="essay-card__meta">Francis Bacon · 1597 · from <em>Essays, Civil and Moral</em></p>
+                    <p class="essay-card__why">Why it works: compact structure, crisp triads, and clear guidance on how reading, conference, and writing serve different aims.</p>
+                    <div class="full-essay">
+                        <p>Studies serve for delight, for ornament, and for ability. Their chief use for delight is in privateness and retiring; for ornament, is in discourse; and for ability, is in the judgment and disposition of business.</p>
+                        <p>Read not to contradict and confute; nor to believe and take for granted; nor to find talk and discourse; but to weigh and consider. Some books are to be tasted, others to be swallowed, and some few to be chewed and digested; that
+                            is, some books are to be read only in parts; others to be read, but not curiously; and some few to be read wholly, and with diligence and attention.</p>
+                        <p>Reading maketh a full man; conference a ready man; and writing an exact man. And therefore, if a man write little, he had need have a great memory; if he confer little, he had need have a present wit; and if he read little, he
+                            had need have much cunning, to seem to know that he doth not.</p>
+                        <p>Histories make men wise; poets witty; the mathematics subtle; natural philosophy deep; moral grave; logic and rhetoric able to contend. Abeunt studia in mores.</p>
+                    </div>
+                    <div class="share-links">
+                        <a href="https://www.gutenberg.org/cache/epub/5657/pg5657-images.html#chap48" target="_blank" class="share-link">Shareable book link (Gutenberg) →</a>
+                    </div>
+                </article>
+
+                <article class="essay-card">
+                    <div class="card-badge">Humor</div>
+                    <h3 class="essay-card__title">On Laziness</h3>
+                    <p class="essay-card__meta">Christopher Morley · 1920 · from <em>Pipefuls</em></p>
+                    <p class="essay-card__why">Why it works: playful voice, clear thesis, and a consistent extended metaphor that keeps readers engaged.</p>
+                    <div class="full-essay">
+                        <p>In this very moment, when I should be addressing myself to an arduous and gallant struggle with some of the most obstinate problems of the intellect, I find myself strangely depressed. I am surrounded by a pile of books; I have
+                            plenty of paper; my fountain pen is filled and in good condition; there is a box of cigarettes and a packet of matches within comfortable reach; and yet I sit here, all at sea.</p>
+                        <p>My mind is empty. My fountain pen refuses to flow. The cigarette smoke drifts toward me reproachfully, as though to remind me that it is not enough to burn tobacco, one should also burn with thought. I seem to be thinking of nothing
+                            at all. I am minded to put down in a few paragraphs an essay on the noble art of doing nothing.</p>
+                        <p>There are two kinds of laziness, of which the first is the result of a lack of energy, the second of a lack of interest. The first is the kind that makes a man lie in bed when he ought to be up; the second is the kind that makes
+                            a man sit down when he ought to be interested. The first can often be cured by a cup of coffee; the second is incurable.</p>
+                        <p>And yet laziness has its uses. It saves us from overproduction; it prevents us from writing too many books; it keeps us from making speeches when we have nothing to say. If there were more laziness in the world, there would be
+                            fewer wars. For it is the energetic men who make wars; it is the lazy men who stay at home and smoke.</p>
+                        <p>Therefore let us cultivate laziness. Let us learn to be idle gracefully. Let us be lazy in body, but not in mind. Let us be lazy in action, but not in thought. Let us be lazy in speech, but not in silence. And above all things,
+                            let us be lazy in our judgments, and not condemn too swiftly the laziness of others.</p>
+                    </div>
+                    <div class="share-links">
+                        <a href="https://www.gutenberg.org/files/57799/57799-h/57799-h.htm#Page_9" target="_blank" class="share-link">Shareable book link (Gutenberg) →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="writing-section">
+            <h2 class="section-title">Modern Exemplars (linked, not reproduced)</h2>
+            <div class="cards-row">
+                <div class="summary-card">
+                    <h3>Politics and the English Language</h3>
+                    <p class="essay-card__meta">George Orwell · 1946</p>
+                    <p class="essay-card__why">Clarity over jargon; six rules for prose; examples of decay in political language.</p>
+                    <a class="share-link" target="_blank" href="https://www.orwell.ru/library/essays/politics/english/e_polit">Read online (shareable) →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>On Self-Respect</h3>
+                    <p class="essay-card__meta">Joan Didion · 1961</p>
+                    <p class="essay-card__why">Precision and control; personal narrative tied to universal themes.</p>
+                    <a class="share-link" target="_blank" href="https://fs.blog/joan-didion-self-respect/">Read online (shareable) →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>The Death of the Moth</h3>
+                    <p class="essay-card__meta">Virginia Woolf · 1942</p>
+                    <p class="essay-card__why">Observation to insight; lyrical tone with tight focus.</p>
+                    <a class="share-link" target="_blank" href="https://s.lakshmanan.com/assets/readings/deathofthemoth.pdf">Read online (shareable) →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="writing-section">
+            <h2 class="section-title">How to Study These Essays</h2>
+            <div class="study-steps">
+                <div class="step-chip">1. Read once for flow</div>
+                <div class="step-chip">2. Map the structure</div>
+                <div class="step-chip">3. Highlight claims vs. evidence</div>
+                <div class="step-chip">4. Note sentence patterns</div>
+                <div class="step-chip">5. Imitate one paragraph</div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<style>
+    @import url('/static/writing_shared.css');
+</style>
+{% endblock %}

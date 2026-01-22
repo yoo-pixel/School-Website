@@ -1,0 +1,118 @@
+{% extends 'base.html' %} {% block title %}Writing Resources | {{ school_name }}{% endblock %} {% block content %}
+<div class="writing-page">
+    <section class="writing-hero">
+        <div class="writing-hero__content">
+            <h1 class="writing-hero__title">Writing Resources Hub</h1>
+            <p class="writing-hero__subtitle">Open books, IELTS prep, grammar tools, and trusted sites—all shareable, no purchase links.</p>
+            <div class="writing-hero__actions">
+                <a class="hero-btn" href="{{ url_for('writing_basics') }}">Basics →</a>
+                <a class="hero-btn hero-btn--ghost" href="{{ url_for('writing_examples') }}">Essay Examples →</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="writing-container">
+        <section class="writing-section">
+            <h2 class="section-title">Open Books (Full Text)</h2>
+            <div class="cards-row">
+                <div class="summary-card">
+                    <h3>The Elements of Style (1918)</h3>
+                    <p class="essay-card__meta">Strunk</p>
+                    <p class="essay-card__why">Concise rules on clarity, usage, and composition.</p>
+                    <a class="share-link" target="_blank" href="https://www.gutenberg.org/ebooks/37134">Read free (Gutenberg) →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>Pipefuls</h3>
+                    <p class="essay-card__meta">Christopher Morley</p>
+                    <p class="essay-card__why">Collection containing "On Laziness" and other craft-forward essays.</p>
+                    <a class="share-link" target="_blank" href="https://www.gutenberg.org/ebooks/57799">Read free (Gutenberg) →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>OpenStax: English Composition I</h3>
+                    <p class="essay-card__meta">OER textbook</p>
+                    <p class="essay-card__why">Covers thesis, structure, research, and revision with exercises.</p>
+                    <a class="share-link" target="_blank" href="https://openstax.org/details/books/writing-guide">Read free (OpenStax) →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>A Handbook of Rhetorical Devices</h3>
+                    <p class="essay-card__meta">Quinn</p>
+                    <p class="essay-card__why">Clear definitions and examples of style devices.</p>
+                    <a class="share-link" target="_blank" href="http://www.virtualsalt.com/rhetoric.htm">Read free (virtualsalt) →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="writing-section">
+            <h2 class="section-title">IELTS & Academic English</h2>
+            <div class="cards-row">
+                <div class="summary-card">
+                    <h3>Band 9 Essay Samples</h3>
+                    <p class="essay-card__why">Model essays with examiner comments.</p>
+                    <a class="share-link" target="_blank" href="https://ieltsliz.com/ielts-writing-task-2-band-9-lessons-tips/">IELTS Liz →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>British Council Writing</h3>
+                    <p class="essay-card__why">Official tasks, tips, and sample answers.</p>
+                    <a class="share-link" target="_blank" href="https://learnenglish.britishcouncil.org/skills/writing">British Council →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>Cambridge Sample Papers</h3>
+                    <p class="essay-card__why">Authentic tasks for timed practice.</p>
+                    <a class="share-link" target="_blank" href="https://www.cambridgeenglish.org/learning-english/exams/ielts/">Cambridge IELTS →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="writing-section">
+            <h2 class="section-title">Tools (Free tiers)</h2>
+            <div class="cards-row">
+                <div class="summary-card">
+                    <h3>Hemingway Editor</h3>
+                    <p class="essay-card__why">Checks readability, highlights passive voice and complex sentences.</p>
+                    <a class="share-link" target="_blank" href="https://hemingwayapp.com/">Open tool →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>Grammarly Free</h3>
+                    <p class="essay-card__why">Basic grammar and clarity feedback.</p>
+                    <a class="share-link" target="_blank" href="https://www.grammarly.com/">Open tool →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>QuillBot Paraphraser</h3>
+                    <p class="essay-card__why">Practice restating ideas; use ethically with citation.</p>
+                    <a class="share-link" target="_blank" href="https://quillbot.com/">Open tool →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>LanguageTool</h3>
+                    <p class="essay-card__why">Multilingual grammar and style checker.</p>
+                    <a class="share-link" target="_blank" href="https://languagetool.org/">Open tool →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="writing-section">
+            <h2 class="section-title">Trusted Sites</h2>
+            <div class="cards-row">
+                <div class="summary-card">
+                    <h3>Purdue OWL</h3>
+                    <p class="essay-card__why">Citation, argument, and style guides.</p>
+                    <a class="share-link" target="_blank" href="https://owl.purdue.edu/owl/general_writing/academic_writing/index.html">Visit site →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>University of Manchester Writing Centre</h3>
+                    <p class="essay-card__why">Sentence starters, critical writing, cohesion toolkit.</p>
+                    <a class="share-link" target="_blank" href="https://www.phrasebank.manchester.ac.uk/">Visit site →</a>
+                </div>
+                <div class="summary-card">
+                    <h3>MIT Comparative Media Studies Writing</h3>
+                    <p class="essay-card__why">Structure, thesis-building, and evidence guides (PDF handouts).</p>
+                    <a class="share-link" target="_blank" href="https://cmsw.mit.edu/writing-and-communication-center/resources/">Visit site →</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<style>
+    @import url('/static/writing_shared.css');
+</style>
+{% endblock %}

@@ -1,0 +1,371 @@
+{% extends 'base.html' %} {% block title %}Add New Program — {{ SCHOOL_NAME }}{% endblock %} {% block content %}
+<style>
+    .add-program-container {
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    
+    .add-program-header {
+        margin-bottom: 30px;
+    }
+    
+    .add-program-header h1 {
+        margin: 0 0 10px 0;
+        color: #1a1a1a;
+    }
+    
+    .back-btn {
+        color: #667eea;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    .back-btn:hover {
+        text-decoration: underline;
+    }
+    
+    .form-container {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 30px;
+    }
+    
+    .form-section {
+        margin-bottom: 28px;
+        padding-bottom: 28px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .form-section:last-of-type {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    .section-title {
+        font-weight: 600;
+        color: #667eea;
+        margin-bottom: 16px;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .form-group {
+        margin-bottom: 16px;
+    }
+    
+    .form-group:last-child {
+        margin-bottom: 0;
+    }
+    
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 6px;
+        font-size: 14px;
+    }
+    
+    .form-required {
+        color: #ff6b6b;
+    }
+    
+    .form-input,
+    .form-textarea,
+    .form-select {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 14px;
+    }
+    
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .form-textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+    
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+    
+    .form-row-full {
+        grid-column: 1 / -1;
+    }
+    
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+    
+    .checkbox-group label {
+        cursor: pointer;
+        margin: 0;
+    }
+    
+    .multi-select {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 8px;
+    }
+    
+    .multi-select label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        padding: 8px;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+    
+    .multi-select label:hover {
+        background: #f0f4ff;
+        border-color: #667eea;
+    }
+    
+    .multi-select input[type="checkbox"] {
+        cursor: pointer;
+    }
+    
+    .form-note {
+        background: #fffacd;
+        border-left: 3px solid #ffc107;
+        padding: 12px;
+        border-radius: 4px;
+        color: #856404;
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        padding-top: 24px;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+    
+    .btn-secondary {
+        background: white;
+        color: #667eea;
+        border: 1px solid #667eea;
+        padding: 12px 28px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+        background: #f0f4ff;
+    }
+    
+    @media (max-width: 600px) {
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="add-program-container">
+    <div class="add-program-header">
+        <h1>➕ Add New Program</h1>
+        <a href="{{ url_for('admin_panel') }}" class="back-btn">← Back to Admin Panel</a>
+    </div>
+
+    <div class="form-container">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+        <div class="contact-alert contact-alert--{{ category }}" style="margin-bottom: 20px;">
+            {{ message }}
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+
+        <form method="POST">
+            <!-- Basic Information -->
+            <div class="form-section">
+                <div class="section-title">📋 Basic Information</div>
+
+                <div class="form-group">
+                    <label class="form-label">Program Name <span class="form-required">*</span></label>
+                    <input type="text" name="name" class="form-input" required placeholder="e.g., MIT Summer Program">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Organization <span class="form-required">*</span></label>
+                    <input type="text" name="organization" class="form-input" required placeholder="e.g., Massachusetts Institute of Technology">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-textarea" placeholder="Brief description of the program..."></textarea>
+                </div>
+            </div>
+
+            <!-- Program Details -->
+            <div class="form-section">
+                <div class="section-title">🎓 Program Details</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Level <span class="form-required">*</span></label>
+                        <select name="level" class="form-select" required>
+                            <option value="">-- Select Level --</option>
+                            <option value="Top-Tier">🏆 Top-Tier</option>
+                            <option value="Achievable">⭐ Achievable</option>
+                            <option value="Accessible">✓ Accessible</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Type <span class="form-required">*</span></label>
+                        <select name="type" class="form-select" required>
+                            <option value="">-- Select Type --</option>
+                            <option value="Summer School">Summer School</option>
+                            <option value="Competition">Competition</option>
+                            <option value="Internship">Internship</option>
+                            <option value="Bootcamp">Bootcamp</option>
+                            <option value="Fellowship">Fellowship</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Cost <span class="form-required">*</span></label>
+                        <select name="cost" class="form-select" required>
+                            <option value="">-- Select Cost --</option>
+                            <option value="Paid">💰 Paid</option>
+                            <option value="Free">🆓 Free</option>
+                            <option value="Paid/Free">Both</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Duration</label>
+                        <input type="text" name="duration" class="form-input" placeholder="e.g., 4 weeks, 8 weeks">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Location</label>
+                    <select name="location" class="form-select">
+                        <option value="">-- Select Location --</option>
+                        <option value="On-campus">🏢 On-campus</option>
+                        <option value="Online">💻 Online</option>
+                        <option value="Hybrid">🔄 Hybrid</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="form-section">
+                <div class="section-title">🌍 Additional Information</div>
+
+                <div class="form-group">
+                    <label class="form-label">Country <span class="form-required">*</span></label>
+                    <input type="text" name="country" class="form-input" required placeholder="e.g., USA, Egypt">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Application Window</label>
+                    <input type="text" name="application_window" class="form-input" placeholder="e.g., January–March">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Eligibility</label>
+                    <textarea name="eligibility" class="form-textarea" placeholder="Eligibility requirements..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Website</label>
+                    <input type="url" name="website" class="form-input" placeholder="https://example.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Why It Matters</label>
+                    <textarea name="why_matters" class="form-textarea" placeholder="Explain the value and impact of this program..."></textarea>
+                </div>
+            </div>
+
+            <!-- Grades & Features -->
+            <div class="form-section">
+                <div class="section-title">📊 Grades & Features</div>
+
+                <div class="form-group">
+                    <label class="form-label">Suitable Grades</label>
+                    <div class="multi-select">
+                        <label>
+                            <input type="checkbox" name="grades" value="9">
+                            <span>Grade 9</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="grades" value="10">
+                            <span>Grade 10</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="grades" value="11">
+                            <span>Grade 11</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="grades" value="12">
+                            <span>Grade 12</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="has-aid" name="aid">
+                        <label for="has-aid">Financial aid available</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <a href="{{ url_for('admin_panel') }}" class="btn-secondary">Cancel</a>
+                <button type="submit" class="btn-primary">Add Program</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block title %}Academic Writing Basics | {{ school_name }}{% endblock %} {% block content %}
+<div class="writing-page">
+    <section class="writing-hero">
+        <div class="writing-hero__content">
+            <h1 class="writing-hero__title">Academic Writing Basics</h1>
+            <p class="writing-hero__subtitle">Core structure, strong paragraphs, and essential language tools. Start here, then explore examples and resources.</p>
+            <div class="writing-hero__actions">
+                <a class="hero-btn" href="{{ url_for('writing_examples') }}">Essay Examples →</a>
+                <a class="hero-btn hero-btn--ghost" href="{{ url_for('writing_resources') }}">Resources →</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="writing-container">
+        {% include 'writing_sections/how_to_write.html' %} {% include 'writing_sections/structure.html' %} {% include 'writing_sections/strong_vs_weak.html' %} {% include 'writing_sections/tips.html' %} {% include 'writing_sections/punctuation.html' %} {% include
+        'writing_sections/grammar.html' %} {% include 'writing_sections/vocab.html' %}
+    </div>
+</div>
+
+<style>
+    @import url('/static/writing_shared.css');
+</style>
+{% endblock %}

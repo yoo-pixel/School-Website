@@ -1,0 +1,332 @@
+:root {
+    --bg: #0f172a;
+    --panel: #111827;
+    --panel-2: #0b1222;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --accent: #6ee7b7;
+    --accent-2: #38bdf8;
+    --card-border: #1f2937;
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    --radius: 14px;
+    --font-display: "Space Grotesk", "Manrope", "Soehne", system-ui, -apple-system, sans-serif;
+    --font-body: "Inter", "Manrope", system-ui, -apple-system, sans-serif;
+}
+
+@media (max-width: 768px) {
+     :root {
+        --radius: 10px;
+    }
+}
+
+body {
+    background: linear-gradient(135deg, #0b1120 0%, #0f172a 40%, #0b1222 100%);
+    color: var(--text);
+    font-family: var(--font-body);
+}
+
+.writing-page {
+    max-width: 1200px;
+    margin: 0 auto 64px auto;
+    padding: 24px 20px 40px 20px;
+}
+
+.writing-hero {
+    background: radial-gradient(circle at 20% 20%, rgba(110, 231, 183, 0.12), transparent 35%), radial-gradient(circle at 80% 10%, rgba(56, 189, 248, 0.16), transparent 40%), var(--panel);
+    border: 1px solid var(--card-border);
+    border-radius: calc(var(--radius) + 4px);
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+}
+
+.writing-hero__title {
+    font-family: var(--font-display);
+    font-size: 34px;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px 0;
+}
+
+.writing-hero__subtitle {
+    color: var(--muted);
+    margin: 0 0 16px 0;
+    max-width: 820px;
+    line-height: 1.6;
+}
+
+.writing-hero__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.hero-btn {
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--accent);
+    color: var(--bg);
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(110, 231, 183, 0.3);
+}
+
+.hero-btn--ghost {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--card-border);
+    box-shadow: none;
+}
+
+.writing-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.writing-section {
+    background: var(--panel-2);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow);
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    margin: 0 0 8px 0;
+}
+
+.section-intro {
+    color: var(--muted);
+    margin: 0 0 14px 0;
+    line-height: 1.6;
+}
+
+.writing-steps {
+    display: grid;
+    gap: 12px;
+}
+
+.writing-step {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 12px;
+    padding: 12px;
+    border-radius: var(--radius);
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.step-number {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(160deg, var(--accent), var(--accent-2));
+    color: var(--bg);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+}
+
+.step-title {
+    margin: 0 0 4px 0;
+    font-weight: 700;
+}
+
+.step-text {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.structure-diagram {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    align-items: center;
+}
+
+.structure-part {
+    padding: 14px;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+}
+
+.structure-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.structure-title {
+    margin: 0 0 6px 0;
+}
+
+.structure-desc {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.structure-arrow {
+    text-align: center;
+    color: var(--muted);
+}
+
+.compare-grid,
+.tips-grid,
+.punctuation-grid,
+.vocab-grid,
+.cards-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+}
+
+.compare-card,
+.tip-card,
+.punct-card,
+.vocab-card,
+.summary-card,
+.essay-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 14px;
+}
+
+.badge,
+.card-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    background: rgba(110, 231, 183, 0.14);
+    color: var(--accent);
+    border: 1px solid rgba(110, 231, 183, 0.5);
+    margin-bottom: 8px;
+}
+
+.compare-card--weak .badge-weak {
+    background: rgba(248, 113, 113, 0.14);
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.4);
+}
+
+.compare-card--strong .badge-strong {
+    background: rgba(110, 231, 183, 0.14);
+    color: var(--accent);
+}
+
+.sentence,
+.essay-card__why,
+.essay-card__meta,
+.summary-card p,
+.tip-text,
+.punct-card p,
+.vocab-card p {
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+.punct-card .example {
+    display: block;
+    margin-top: 6px;
+    color: var(--text);
+}
+
+.checklist {
+    display: grid;
+    gap: 10px;
+}
+
+.check-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.check-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 6px;
+}
+
+.vocab-card h3,
+.tip-card h3,
+.punct-card h3,
+.summary-card h3,
+.essay-card__title {
+    margin: 0 0 6px 0;
+    font-weight: 700;
+}
+
+.essay-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+}
+
+.essay-card__meta {
+    font-size: 14px;
+    margin: 0 0 6px 0;
+}
+
+.full-essay {
+    padding: 12px;
+    border-radius: var(--radius);
+    background: #0d1426;
+    border: 1px solid var(--card-border);
+    max-height: 420px;
+    overflow: auto;
+    line-height: 1.65;
+}
+
+.share-links {
+    margin-top: 10px;
+}
+
+.share-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.cards-row {
+    gap: 12px;
+}
+
+.summary-card {
+    border-left: 2px solid rgba(110, 231, 183, 0.5);
+}
+
+.study-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.step-chip {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--card-border);
+    padding: 8px 12px;
+    border-radius: 10px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .writing-step {
+        grid-template-columns: 1fr;
+    }
+    .full-essay {
+        max-height: none;
+    }
+}
